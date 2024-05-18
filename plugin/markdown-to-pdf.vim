@@ -1,3 +1,3 @@
 if has('nvim')
-  lua require('my_pandoc_plugin').run_pandoc()
+  lua require('markdown-to-pdf').run_pandoc()
 endif
