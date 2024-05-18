@@ -20,7 +20,10 @@ M.run_pandoc = function()
     handle:close()
     if code == 0 then
       print("Pandoc conversion successful!")
-      vim.fn.jobstart({ 'xdg-open', pdf_file }, { detach = true })
+      -- Schedule the jobstart call to run outside the callback
+      vim.schedule(function()
+        vim.fn.jobstart({ 'xdg-open', pdf_file }, { detach = true })
+      end)
     else
       print("Pandoc conversion failed with code " .. code .. " and signal " .. signal)
     end
@@ -42,3 +45,4 @@ M.run_pandoc = function()
 end
 
 return M
+
